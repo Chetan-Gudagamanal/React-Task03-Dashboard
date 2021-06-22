@@ -25,16 +25,16 @@ export default function Forgot_Password(){
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address..."/>
                                         </div>
-                                        <a href="login.html" className="btn btn-primary btn-user btn-block">
+                                        <a href="#" className="btn btn-primary btn-user btn-block">
                                             Reset Password
                                         </a>
                                     </form>
                                     <hr/>
                                     <div className="text-center">
-                                        <a className="small" href="register.html">Create an Account!</a>
+                                        <a className="small" href="#">Create an Account!</a>
                                     </div>
                                     <div className="text-center">
-                                        <a className="small" href="login.html">Already have an account? Login!</a>
+                                        <a className="small" href="#">Already have an account? Login!</a>
                                     </div>
                                 </div>
                             </div>

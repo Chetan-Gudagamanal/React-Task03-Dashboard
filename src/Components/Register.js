@@ -37,23 +37,23 @@ export default function Register(){
                                             id="exampleRepeatPassword" placeholder="Repeat Password"/>
                                     </div>
                                 </div>
-                                <a href="login.html" className="btn btn-primary btn-user btn-block">
+                                <a href="#" className="btn btn-primary btn-user btn-block">
                                     Register Account
                                 </a>
                                 <hr/>
-                                <a href="index.html" className="btn btn-google btn-user btn-block">
+                                <a href="#" className="btn btn-google btn-user btn-block">
                                     <i className="fab fa-google fa-fw"></i> Register with Google
                                 </a>
-                                <a href="index.html" className="btn btn-facebook btn-user btn-block">
+                                <a href="#" className="btn btn-facebook btn-user btn-block">
                                     <i className="fab fa-facebook-f fa-fw"></i> Register with Facebook
                                 </a>
                             </form>
                             <hr/>
                             <div className="text-center">
-                                <a className="small" href="forgot-password.html">Forgot Password?</a>
+                                <a className="small" href="#">Forgot Password?</a>
                             </div>
                             <div className="text-center">
-                                <a className="small" href="login.html">Already have an account? Login!</a>
+                                <a className="small" href="#">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>

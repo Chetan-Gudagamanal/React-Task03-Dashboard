@@ -34,23 +34,23 @@ export default function Login(){
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" className="btn btn-primary btn-user btn-block">
+                                        <a href="#" className="btn btn-primary btn-user btn-block">
                                             Login
                                         </a>
                                         <hr/>
-                                        <a href="index.html" className="btn btn-google btn-user btn-block">
+                                        <a href="#" className="btn btn-google btn-user btn-block">
                                             <i className="fab fa-google fa-fw"></i> Login with Google
                                         </a>
-                                        <a href="index.html" className="btn btn-facebook btn-user btn-block">
+                                        <a href="#" className="btn btn-facebook btn-user btn-block">
                                             <i className="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>
                                     </form>
                                     <hr/>
                                     <div className="text-center">
-                                        <a className="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a className="small" href="#">Forgot Password?</a>
                                     </div>
                                     <div className="text-center">
-                                        <a className="small" href="register.html">Create an Account!</a>
+                                        <a className="small" href="#">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
