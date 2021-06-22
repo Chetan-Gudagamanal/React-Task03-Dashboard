@@ -41,7 +41,6 @@ export default function Tables_Page(){
                         </div>
                         <div className="card-body">
                             <div className="table-responsive">
-                                {/* <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0"> */}
                                 <DataTable
                                     title="Employees"
                                     columns={columns}
