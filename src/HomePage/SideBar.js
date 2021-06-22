@@ -118,7 +118,7 @@ export default function SideBar(){
             <div className="sidebar-card d-none d-lg-flex">
                 <img className="sidebar-card-illustration mb-2" src={undraw_rocket} alt="..."/>
                 <p className="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a className="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+                <a className="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro" target="_blank">Upgrade to Pro!</a>
             </div>
 
         </ul>
