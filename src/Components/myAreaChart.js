@@ -125,6 +125,14 @@ const MyAreaChart = props => {
       });
   }
   
+  // useEffect(() => {
+    
+  //   const canvas = canvasRef.current
+  //   const context = canvas.getContext('2d')
+    
+  //   //Our draw come here
+  //   draw(context)
+  // }, [draw])
   useEffect(() => {
     
     const canvas = canvasRef.current
@@ -132,7 +140,7 @@ const MyAreaChart = props => {
     
     //Our draw come here
     draw(context)
-  }, [draw])
+  }, [])
   
   return <canvas ref={canvasRef} {...props}/>
 }
