@@ -1,6 +1,6 @@
 import undraw_rocket from "../img/undraw_rocket.svg"
 import {Link} from "react-router-dom"
-export default function SideBar(){
+export default function SideBar({currentUser}){
     return(
         <>
         {/* <!-- Sidebar --> */}
@@ -23,6 +23,29 @@ export default function SideBar(){
                     <Link to="/" className="nav-link">
                     <i className="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></Link>
+            </li>
+            
+            {/* list users */}
+            <li className="nav-item active">
+                
+                    <Link to="/users" className="nav-link">
+                    {/* <i className="fas fa-fw fa-tachometer-alt"></i> */}
+                    <span>Users List</span></Link>
+            </li>
+            {/* create users */}
+            <li className="nav-item active">
+                
+                    <Link to="/create-user" className="nav-link">
+                    {/* <i className="fas fa-fw fa-tachometer-alt"></i> */}
+                    <span>Create Users</span></Link>
+            </li>
+            
+            {/* user profile */}
+            <li className="nav-item active">
+                
+                    <Link to={`/profile/${currentUser.id}`} className="nav-link">
+                    {/* <i className="fas fa-fw fa-tachometer-alt"></i> */}
+                    <span>Current User profile</span></Link>
             </li>
 
             {/* <!-- Divider --> */}
@@ -98,11 +121,11 @@ export default function SideBar(){
             </li>
 
             {/* <!-- Nav Item - Charts --> */}
-            <li className="nav-item">
+            {/* <li className="nav-item">
                 <Link to="charts" className="nav-link">
                     <i className="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></Link>
-            </li>
+            </li> */}
 
             {/* <!-- Nav Item - Tables --> */}
             <li className="nav-item">
