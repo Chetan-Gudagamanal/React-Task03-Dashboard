@@ -1,7 +1,7 @@
 
 import './App.css';
 import {Switch,Route,useParams} from "react-router-dom"
-import {useEffect, useState} from "react"
+import {createContext, useEffect, useState} from "react"
 
 import SideBar from './HomePage/SideBar';
 import TopBar from './HomePage/TopBar';
@@ -31,7 +31,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+export const userContext=createContext(null)
 
 function App() {    
     
@@ -49,142 +49,146 @@ function App() {
             setCurrentUser(res[0]);
         }
         if(obj){
-            const filteredUser=res.filter((user)=>{
-                return user.id==obj.id;
-            })
-            console.log(filteredUser)
-            setCurrentUser(filteredUser[0])
+            if(obj.updateCurrentUser){
+                const filteredUser=res.filter((user)=>{
+                    return user.id==obj.id;
+                })
+                setCurrentUser(filteredUser[0])
+            }  
         }
     };
     useEffect(() => {
         getUsers();
       }, []);
-  return (
-    <div className="App">
+    
+    return (
+        <userContext.Provider value={{currentUser,setCurrentUser,users,getUsers,useParams}}>
+        <div className="App">
 
-    {/* <!-- Page Wrapper --> */}
-    <div id="wrapper">
+        {/* <!-- Page Wrapper --> */}
+        <div id="wrapper">
 
-        <SideBar currentUser={currentUser}/>
+            <SideBar/>
 
-        {/* <!-- Content Wrapper --> */}
-        <div id="content-wrapper" className="d-flex flex-column">
+            {/* <!-- Content Wrapper --> */}
+            <div id="content-wrapper" className="d-flex flex-column">
 
-            {/* <!-- Main Content --> */}
-            <div id="content">
+                {/* <!-- Main Content --> */}
+                <div id="content">
 
-                <TopBar currentUser={currentUser}/>
+                    <TopBar/>
 
-                {/* <!-- Begin Page Content --> */}
-                <div className="PageContent">
-                <Switch>
-                    <Route exact path="/">
-                        <HomePage/>
-                    </Route>
+                    {/* <!-- Begin Page Content --> */}
+                    <div className="PageContent">
+                    <Switch>
+                        <Route exact path="/">
+                            <HomePage/>
+                        </Route>
 
-                    <Route path="/users">
-                        <UserList setCurrentUser={setCurrentUser} users={users}/>
-                    </Route>
-                    <Route path="/create-user">
-                        <AddUser getUsers={getUsers}/>
-                    </Route>
-                    <Route path="/edit-user/:id">
-                        <EditUser useParams={useParams} users={users} getUsers={getUsers}/>
-                    </Route>
-                    <Route path="/profile/:id">
-                        <UserProfile useParams={useParams} users={users}/>
-                    </Route>
-                    
+                        <Route path="/users">
+                            <UserList/>
+                        </Route>
+                        <Route path="/create-user">
+                            <AddUser/>
+                        </Route>
+                        <Route path="/edit-user/:id">
+                            <EditUser/>
+                        </Route>
+                        <Route path="/profile/:id">
+                            <UserProfile/>
+                        </Route>
+                        
 
 
 
-                    <Route path="/buttons">
-                        <Buttons/>
-                    </Route>
-                    <Route path="/cards">
-                        <Cards/>
-                    </Route>
-                    <Route path="/colors">
-                        <Colors/>
-                    </Route>
-                    <Route path="/borders">
-                        <Borders/>
-                    </Route>
-                    <Route path="/animations">
-                        <Animations/>
-                    </Route>
-                    <Route path="/other">
-                        <Other/>
-                    </Route>
-                    <Route path="/login">
-                        <Login/>
-                    </Route>
-                    <Route path="/register">
-                        <Register/>
-                    </Route>
-                    <Route path="/forgot_password">
-                        <Forgot_Password/>
-                    </Route>
-                    <Route path="/page404">
-                        <Page_404/>
-                    </Route>
-                    <Route path="/blank_page">
-                        <Blank_Page/>
-                    </Route>
-                    {/* <Route path="/charts">
-                        <Charts_Page/>
-                    </Route> */}
-                    <Route path="/tables">
-                        <Tables_Page/>
-                    </Route>
-                </Switch>
+                        <Route path="/buttons">
+                            <Buttons/>
+                        </Route>
+                        <Route path="/cards">
+                            <Cards/>
+                        </Route>
+                        <Route path="/colors">
+                            <Colors/>
+                        </Route>
+                        <Route path="/borders">
+                            <Borders/>
+                        </Route>
+                        <Route path="/animations">
+                            <Animations/>
+                        </Route>
+                        <Route path="/other">
+                            <Other/>
+                        </Route>
+                        <Route path="/login">
+                            <Login/>
+                        </Route>
+                        <Route path="/register">
+                            <Register/>
+                        </Route>
+                        <Route path="/forgot_password">
+                            <Forgot_Password/>
+                        </Route>
+                        <Route path="/page404">
+                            <Page_404/>
+                        </Route>
+                        <Route path="/blank_page">
+                            <Blank_Page/>
+                        </Route>
+                        {/* <Route path="/charts">
+                            <Charts_Page/>
+                        </Route> */}
+                        <Route path="/tables">
+                            <Tables_Page/>
+                        </Route>
+                    </Switch>
+                    </div>
+
                 </div>
+                {/* <!-- End of Main Content --> */}
+
+                {/* <!-- Footer --> */}
+                <footer className="sticky-footer bg-white">
+                    <div className="container my-auto">
+                        <div className="copyright text-center my-auto">
+                            <span>Copyright &copy; React User Dashboard 2021</span>
+                        </div>
+                    </div>
+                </footer>
+                {/* <!-- End of Footer --> */}
 
             </div>
-            {/* <!-- End of Main Content --> */}
+            {/* <!-- End of Content Wrapper --> */}
 
-            {/* <!-- Footer --> */}
-            <footer className="sticky-footer bg-white">
-                <div className="container my-auto">
-                    <div className="copyright text-center my-auto">
-                        <span>Copyright &copy; React Bootstrap Dashboard 2021</span>
+        </div>
+        {/* <!-- End of Page Wrapper --> */}
+
+        {/* <!-- Scroll to Top Button--> */}
+        <a className="scroll-to-top rounded" href="#page-top">
+            <i className="fas fa-angle-up"></i>
+        </a>
+
+        {/* <!-- Logout Modal--> */}
+        <div className="modal fade" id="logoutModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button className="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div className="modal-body">Select "Logout" below if you are ready to end your current session. The page will be reloaded.</div>
+                    <div className="modal-footer">
+                        <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a className="btn btn-primary" href="/">Logout</a>
                     </div>
                 </div>
-            </footer>
-            {/* <!-- End of Footer --> */}
-
-        </div>
-        {/* <!-- End of Content Wrapper --> */}
-
-    </div>
-    {/* <!-- End of Page Wrapper --> */}
-
-    {/* <!-- Scroll to Top Button--> */}
-    <a className="scroll-to-top rounded" href="#page-top">
-        <i className="fas fa-angle-up"></i>
-    </a>
-
-    {/* <!-- Logout Modal--> */}
-    <div className="modal fade" id="logoutModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div className="modal-dialog" role="document">
-            <div className="modal-content">
-                <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button className="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div className="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div className="modal-footer">
-                    <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a className="btn btn-primary" href="/">Logout</a>
-                </div>
             </div>
         </div>
-    </div>
-    </div>
-  );
+        </div>
+        </userContext.Provider>
+    );
 }
 
 export default App;

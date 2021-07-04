@@ -1,12 +1,15 @@
 import {Link} from "react-router-dom"
+import { useContext } from "react"
 import undraw_profile_1 from "../img/undraw_profile_1.svg"
 import undraw_profile_2 from "../img/undraw_profile_2.svg"
 import undraw_profile_3 from "../img/undraw_profile_3.svg"
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
+import {userContext} from '../App'
 
 
-export default function TopBar({currentUser}){
+export default function TopBar(){
+    const {currentUser}=useContext(userContext)
     const useStyles = makeStyles((theme) => ({
         large: {
           width: theme.spacing(6),

@@ -5,11 +5,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Container } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 import {Link} from "react-router-dom"
+import { useContext } from "react"
+import {userContext} from '../../App'
 
 
 
 
-export default function UserList({users,setCurrentUser}){
+export default function UserList(){
+    const {users,setCurrentUser}=useContext(userContext)
     const useStyles = makeStyles((theme) => ({
         large: {
           width: theme.spacing(8),

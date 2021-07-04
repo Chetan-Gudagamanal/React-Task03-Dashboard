@@ -1,6 +1,10 @@
 import undraw_rocket from "../img/undraw_rocket.svg"
 import {Link} from "react-router-dom"
-export default function SideBar({currentUser}){
+import { useContext } from "react"
+import {userContext} from '../App'
+
+export default function SideBar(){
+    const {currentUser}=useContext(userContext)
     return(
         <>
         {/* <!-- Sidebar --> */}

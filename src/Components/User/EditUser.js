@@ -1,15 +1,18 @@
 
 import "./AddUser.css";
-import Card from "@material-ui/core/Card";
 import { useForm } from "react-hook-form";
 import { Container } from "@material-ui/core";
+import { useContext } from "react"
+import {userContext} from '../../App'
 
-export default function EditUser({useParams,users,getUsers}){
+export default function EditUser(){
+    const {useParams,users,getUsers,currentUser} = useContext(userContext)
     const {id}=useParams()
     const editUser= users.filter((user)=>{
         return user.id==id;
     })
-    
+    //to  check if user is current user
+    let currentUserFlag=currentUser.id==editUser[0].id;
     const {
         register,
         formState: { errors },
@@ -26,7 +29,12 @@ export default function EditUser({useParams,users,getUsers}){
           body: JSON.stringify({ ...data })
         })
           .then((res) => res.json())
-          .then((res) => getUsers({updateCurrentUser:true,id:editUser[0].id}));
+          .then((res) => {
+            if(res.id==editUser[0].id){
+              alert("User has been updated successfully, Kindly verify in 'Users list' from left menu bar")
+            }
+            getUsers({updateCurrentUser:currentUserFlag,id:editUser[0].id})
+        });
       }
     
       return (

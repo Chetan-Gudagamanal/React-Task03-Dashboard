@@ -1,9 +1,11 @@
 import "./AddUser.css";
-import Card from "@material-ui/core/Card";
 import { useForm } from "react-hook-form";
 import { Container } from "@material-ui/core";
+import { useContext } from "react"
+import {userContext} from '../../App'
 
-export default function AddUser({getUsers}){
+export default function AddUser(){
+  const {getUsers}=useContext(userContext)
     const {
         register,
         formState: { errors },
@@ -19,7 +21,12 @@ export default function AddUser({getUsers}){
           body: JSON.stringify({ ...data, createdAt: new Date().toISOString() })
         })
           .then((res) => res.json())
-          .then((res) => getUsers());
+          .then((res) => {
+            if(res.id){
+              alert("User is added successfully, Kindly verify in 'Users list' from left menu bar")
+            }
+            getUsers()
+          });
       }
     
       return (
